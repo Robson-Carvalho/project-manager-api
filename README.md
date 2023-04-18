@@ -5,9 +5,9 @@
 <p align="center">
   <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=3B82F6&labelColor=3B82F6" alt="License">
 
-  <img src="https://img.shields.io/github/forks/Robson-Carvalho/waiter-app-api?label=forks&message=MIT&color=3B82F6&labelColor=3B82F6" alt="Forks">
+  <img src="https://img.shields.io/github/forks/Robson-Carvalho/project-manager-api?label=forks&message=MIT&color=3B82F6&labelColor=3B82F6" alt="Forks">
 
-  <img src="https://img.shields.io/github/stars/Robson-Carvalho/waiter-app-api?label=stars&message=MIT&color=3B82F6&labelColor=3B82F6" alt="Stars">
+  <img src="https://img.shields.io/github/stars/Robson-Carvalho/project-manager-api?label=stars&message=MIT&color=3B82F6&labelColor=3B82F6" alt="Stars">
 </p>
 
 <h1 align="center">
