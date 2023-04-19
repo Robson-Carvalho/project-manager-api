@@ -3,6 +3,8 @@ import { router } from "./router";
 
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
 const port = process.env.PORT || 3001;
 require("dotenv").config();
 
@@ -19,6 +21,7 @@ mongoose
       next();
     });
     app.use(express.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(router);
 
     app.listen(port, () => {
