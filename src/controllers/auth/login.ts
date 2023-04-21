@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+
 import { User } from "../../models/User";
 
-require("dotenv").config();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-
-export const authLogin = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
@@ -37,18 +36,25 @@ export const authLogin = async (req: Request, res: Response) => {
       });
     }
 
-    const secret = process.env.SECRET;
+    const secretKey = process.env.SECRET;
     const token = jwt.sign(
       {
         id: user._id,
       },
-      secret,
+      secretKey!,
       { expiresIn: "1d" }
     );
 
-    res
-      .status(200)
-      .json({ message: "Authentication performed successfully", token });
+    const { name } = user;
+
+    res.status(200).json({
+      message: "Authentication performed successfully",
+      user: {
+        email,
+        name,
+      },
+      token,
+    });
   } catch (error) {
     res.status(500).json({ message: `${error}` });
   }
