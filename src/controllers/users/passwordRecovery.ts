@@ -43,7 +43,9 @@ export const passwordRecovery = async (req: Request, res: Response) => {
 
     const textHtml = passwordRecoveryPage(
       user.name,
-      `http://localhost:3030/recoveringPassword/${token}`
+      `${
+        process.env.PROJECT_MANAGER_API_URL || "http://localhost:3030"
+      }/${"recovering/password/"}/${token}`
     );
 
     const mailOptions = {
