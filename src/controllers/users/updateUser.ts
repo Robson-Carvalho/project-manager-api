@@ -54,19 +54,19 @@ export const updateUser = async (req: Request, res: Response) => {
     if (email !== user.email) {
       if (await User.findOne({ email: email })) {
         return res.status(400).json({
-          error: `The e-mail ${email} is already registered. Please try another one!`,
+          message: `The e-mail ${email} is already registered. Please try another one!`,
         });
       }
     }
 
     if (!(await bcrypt.compare(currentPassword, user.password))) {
       return res.status(422).json({
-        error: "Invalid password",
+        message: "Invalid password",
       });
     }
 
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    const saltRounds = process.env.SALT_ROUNDS;
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds!);
 
     await User.findByIdAndUpdate(id, {
       email,

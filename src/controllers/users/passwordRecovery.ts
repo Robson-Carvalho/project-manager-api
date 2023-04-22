@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import nodeMailer from "nodemailer";
-
+import jwt from "jsonwebtoken";
 import { passwordRecoveryPage } from "../../utils/passwordRecoveryPage";
 
 import { User } from "../../models/User";
@@ -32,9 +32,18 @@ export const passwordRecovery = async (req: Request, res: Response) => {
       },
     });
 
+    const secretKey = process.env.JWT_SECRET_KEY;
+    const token = jwt.sign(
+      {
+        email: user.email,
+      },
+      secretKey!,
+      { expiresIn: "5m" }
+    );
+
     const textHtml = passwordRecoveryPage(
       user.name,
-      "https://project-manager-api-robson-carvalho.vercel.app/"
+      `http://localhost:3030/recoveringPassword/${token}`
     );
 
     const mailOptions = {
