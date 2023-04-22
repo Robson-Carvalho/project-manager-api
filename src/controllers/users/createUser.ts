@@ -33,8 +33,8 @@ export const createUser = async (req: Request, res: Response) => {
       });
     }
 
-    const saltRounds = process.env.SALT_ROUNDS;
-    const hashedPassword = await bcrypt.hash(password, saltRounds!);
+    const saltRounds = parseInt(process.env.SALT_ROUNDS!);
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     const user = await User.create({
       email,

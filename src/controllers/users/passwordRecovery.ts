@@ -41,12 +41,9 @@ export const passwordRecovery = async (req: Request, res: Response) => {
       { expiresIn: "5m" }
     );
 
-    const textHtml = passwordRecoveryPage(
-      user.name,
-      `${
-        process.env.PROJECT_MANAGER_API_URL || "http://localhost:3030"
-      }/${"recovering/password/"}/${token}`
-    );
+    const link = `${"http://localhost:3030"}${"/recovering/password/"}${token}`;
+
+    const textHtml = passwordRecoveryPage(user.name, link);
 
     const mailOptions = {
       from: process.env.NODEMAILER_USER,
