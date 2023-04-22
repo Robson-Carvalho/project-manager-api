@@ -10,13 +10,13 @@ export const login = async (req: Request, res: Response) => {
 
     if (!email) {
       return res.status(400).json({
-        error: "E-mail is required",
+        message: "E-mail is required",
       });
     }
 
     if (!password) {
       return res.status(400).json({
-        error: "Password is required",
+        message: "Password is required",
       });
     }
 
@@ -24,7 +24,7 @@ export const login = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(404).json({
-        error: `No user registered with e-mail ${email}`,
+        message: `No user registered with e-mail ${email}`,
       });
     }
 
@@ -32,11 +32,11 @@ export const login = async (req: Request, res: Response) => {
 
     if (!checkPassword) {
       return res.status(422).json({
-        error: "Invalid password",
+        message: "Invalid password",
       });
     }
 
-    const secretKey = process.env.SECRET;
+    const secretKey = process.env.JWT_SECRET_KEY;
     const token = jwt.sign(
       {
         id: user._id,
@@ -45,14 +45,8 @@ export const login = async (req: Request, res: Response) => {
       { expiresIn: "1d" }
     );
 
-    const { name } = user;
-
     res.status(200).json({
       message: "Authentication performed successfully",
-      user: {
-        email,
-        name,
-      },
       token,
     });
   } catch (error) {
