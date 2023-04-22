@@ -13,15 +13,15 @@ router.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "welcome to Project Manager API" });
 });
 
-router.post("/createUser", createUser);
+router.post("/create/user", createUser);
 
 router.post("/login", login);
 
-router.post("/updateUser", updateUser);
+router.post("/update/user", updateUser);
 
-router.post("/passwordRecovery", passwordRecovery);
+router.post("/password/recovery", passwordRecovery);
 
-router.post("/recoveringPassword/:token", recoveringPassword);
+router.post("/recovering/password/:token", recoveringPassword);
 
 router.get("*", (req: Request, res: Response) => {
   res.status(404).send({ message: "This route does not exist!" });

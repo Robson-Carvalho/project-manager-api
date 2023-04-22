@@ -65,7 +65,7 @@ export const updateUser = async (req: Request, res: Response) => {
       });
     }
 
-    const saltRounds = process.env.SALT_ROUNDS;
+    const saltRounds = parseInt(process.env.SALT_ROUNDS!);
     const hashedPassword = await bcrypt.hash(newPassword, saltRounds!);
 
     await User.findByIdAndUpdate(id, {
