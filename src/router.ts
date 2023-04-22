@@ -4,6 +4,7 @@ import { Router } from "express";
 import { createUser } from "./controllers/users/createUser";
 import { login } from "./controllers/auth/login";
 import { updateUser } from "./controllers/users/updateUser";
+import { passwordRecovery } from "./controllers/users/passwordRecovery";
 
 export const router = Router();
 
@@ -16,6 +17,8 @@ router.post("/createUser", createUser);
 router.post("/login", login);
 
 router.post("/updateUser", updateUser);
+
+router.post("/passwordRecovery", passwordRecovery);
 
 router.get("*", (req: Request, res: Response) => {
   res.status(404).send({ message: "This route does not exist!" });

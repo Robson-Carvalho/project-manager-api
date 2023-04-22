@@ -42,7 +42,7 @@ export const updateUser = async (req: Request, res: Response) => {
     }
 
     const token = authorization.split(" ")[1];
-    const secretKey = process.env.SECRET;
+    const secretKey = process.env.JWT_SECRET_KEY;
     const { id } = jwt.verify(token, secretKey!) as JWTPayLoad;
 
     const user = await User.findOne({ _id: id });
