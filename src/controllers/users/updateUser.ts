@@ -75,7 +75,7 @@ export const updateUser = async (req: Request, res: Response) => {
       imagePath,
     });
 
-    res.json({ message: "User information changed successfully" });
+    res.status(200).json({ message: "User information changed successfully" });
   } catch (error) {
     res.status(500).json({ message: `${error}` });
   }
