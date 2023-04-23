@@ -57,7 +57,7 @@ export const passwordRecovery = async (req: Request, res: Response) => {
         return res.status(500).json({ message: err });
       }
 
-      return res.status(200).json({
+      res.status(200).json({
         message:
           "The password has been sent to the email provided! Please check your password in the spam box.",
       });

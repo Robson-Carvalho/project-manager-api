@@ -10,16 +10,18 @@ interface JWTPayLoad {
 
 export const recoveringPassword = async (req: Request, res: Response) => {
   try {
-    const token = req.params.token;
+    const { authorization } = req.headers;
     const { newPassword } = req.body;
 
-    if (!token) {
+    if (!authorization) {
       return res.status(401).json({ message: "Not authorized" });
     }
 
     if (!newPassword) {
       return res.status(401).json({ message: "Password is required" });
     }
+
+    const token = authorization.split(" ")[1];
 
     const secretKey = process.env.JWT_SECRET_KEY;
     const { email } = jwt.verify(token, secretKey!) as JWTPayLoad;
