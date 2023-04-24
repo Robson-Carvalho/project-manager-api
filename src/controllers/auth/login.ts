@@ -4,9 +4,14 @@ import jwt from "jsonwebtoken";
 
 import { User } from "../../models/User";
 
+interface IUserLogin {
+  email: string;
+  password: string;
+}
+
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { email, password }: IUserLogin = req.body;
 
     if (!email) {
       return res.status(400).json({

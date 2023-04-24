@@ -3,15 +3,20 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 import { User } from "../../models/User";
+import { IncomingHttpHeaders } from "http";
 
 interface JWTPayLoad {
   email: string;
 }
 
+interface INewPassword {
+  newPassword: string;
+}
+
 export const recoveringPassword = async (req: Request, res: Response) => {
   try {
-    const { authorization } = req.headers;
-    const { newPassword } = req.body;
+    const { authorization }: IncomingHttpHeaders = req.headers;
+    const { newPassword }: INewPassword = req.body;
 
     if (!authorization) {
       return res.status(401).json({ message: "Not authorized" });

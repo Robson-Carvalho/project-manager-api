@@ -3,9 +3,16 @@ import { User } from "../../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+interface IUser {
+  name: string;
+  email: string;
+  password: string;
+  imagePath: string;
+}
+
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, imagePath } = req.body;
+    const { name, email, password, imagePath }: IUser = req.body;
 
     if (!name) {
       return res.status(400).json({

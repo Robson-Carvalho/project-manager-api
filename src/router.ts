@@ -12,7 +12,7 @@ import { createProject } from "./controllers/projects/createProject";
 export const router = Router();
 
 router.get("/", (req: Request, res: Response) => {
-  res.status(200).json({ message: "welcome to Project Manager API" });
+  res.status(200).json({ message: "Welcome to Project Manager API" });
 });
 
 router.post("/login", login);

@@ -8,11 +8,26 @@ interface JWTPayLoad {
   id: number;
 }
 
+interface IProject {
+  title: string;
+  description: string;
+  status: boolean;
+  technologies: Array<string>;
+  url_image: string;
+  url_github: string;
+}
+
 export const createProject = async (req: Request, res: Response) => {
   try {
     const { authorization } = req.headers;
-    const { title, description, status, technologies, url_image, url_github } =
-      req.body;
+    const {
+      title,
+      description,
+      status,
+      technologies,
+      url_image,
+      url_github,
+    }: IProject = req.body;
 
     if (!authorization) {
       return res.status(401).json({ message: "Not authorized" });
