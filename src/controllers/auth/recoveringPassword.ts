@@ -17,11 +17,11 @@ export const recoveringPassword = async (req: Request, res: Response) => {
     const { newPassword }: INewPassword = req.body;
 
     if (!authorization) {
-      return res.status(401).json({ message: "Not authorized" });
+      return res.status(401).json({ message: "not authorized" });
     }
 
     if (!newPassword) {
-      return res.status(401).json({ message: "Password is required" });
+      return res.status(401).json({ message: "password is required" });
     }
 
     const token = authorization.split(" ")[1];
@@ -32,7 +32,7 @@ export const recoveringPassword = async (req: Request, res: Response) => {
     const user = User.findOne({ email: email });
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "user not found" });
     }
 
     const saltRounds = parseInt(process.env.SALT_ROUNDS!);
@@ -45,8 +45,8 @@ export const recoveringPassword = async (req: Request, res: Response) => {
       }
     );
 
-    res.status(200).json({ message: "Password recovered successfully" });
-  } catch (error) {
-    res.status(500).json({ message: `${error}` });
+    res.status(200).json({ message: "password recovered successfully" });
+  } catch (err) {
+    res.status(500).json({ message: `${err}` });
   }
 };

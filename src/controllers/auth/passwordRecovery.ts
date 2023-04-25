@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import nodeMailer from "nodemailer";
 import jwt from "jsonwebtoken";
+
 import { passwordRecoveryPage } from "../../utils/passwordRecoveryPage";
 
 import { User } from "../../models/User";
@@ -15,7 +16,7 @@ export const passwordRecovery = async (req: Request, res: Response) => {
 
     if (!email) {
       return res.status(400).json({
-        message: "E-mail is required",
+        message: "e-mail is required",
       });
     }
 
@@ -23,7 +24,7 @@ export const passwordRecovery = async (req: Request, res: Response) => {
 
     if (!user) {
       return res.status(404).json({
-        message: "There is no user registered with this email",
+        message: "there is no user registered with this email",
       });
     }
 
@@ -63,10 +64,10 @@ export const passwordRecovery = async (req: Request, res: Response) => {
 
       res.status(200).json({
         message:
-          "The password has been sent to the email provided! Please check your password in the spam box.",
+          "the password has been sent to the email provided! Please check your password in the spam box.",
       });
     });
-  } catch (error) {
-    res.status(500).json({ message: `${error}` });
+  } catch (err) {
+    res.status(500).json({ message: `${err}` });
   }
 };
