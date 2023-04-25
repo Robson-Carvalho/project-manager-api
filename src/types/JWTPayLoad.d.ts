@@ -1,4 +1,4 @@
 export interface JWTPayLoad {
-  id: string;
+  userID: string;
   email: string;
 }

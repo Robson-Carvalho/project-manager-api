@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { User } from "../../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
+import { User } from "../../models/User";
 
 interface IUser {
   name: string;
@@ -16,19 +17,19 @@ export const createUser = async (req: Request, res: Response) => {
 
     if (!name) {
       return res.status(400).json({
-        message: "Name is required",
+        message: "name is required",
       });
     }
 
     if (!email) {
       return res.status(400).json({
-        message: "E-mail is required",
+        message: "e-mail is required",
       });
     }
 
     if (!password) {
       return res.status(400).json({
-        message: "Password is required",
+        message: "password is required",
       });
     }
 
@@ -36,7 +37,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     if (existEmail) {
       return res.status(400).json({
-        message: `The e-mail ${email} is already registered. Please try another one!`,
+        message: `the e-mail ${email} is already registered. Please try another one!`,
       });
     }
 
@@ -63,7 +64,7 @@ export const createUser = async (req: Request, res: Response) => {
       message: `${name.split(" ")[0]} user successfully registered`,
       token,
     });
-  } catch (error) {
-    res.status(500).json({ message: `${error}` });
+  } catch (err) {
+    res.status(500).json({ message: `${err}` });
   }
 };

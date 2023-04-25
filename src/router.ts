@@ -9,6 +9,8 @@ import { recoveringPassword } from "./controllers/auth/recoveringPassword";
 import { deleteUser } from "./controllers/users/deleteUser";
 import { createProject } from "./controllers/projects/createProject";
 import { publicProjects } from "./controllers/projects/publicProjects";
+import { deleteProject } from "./controllers/projects/deleteProject";
+import { privateProjects } from "./controllers/projects/privateProjects";
 
 export const router = Router();
 
@@ -32,9 +34,9 @@ router.post("/create/project", createProject);
 
 router.get("/projects/:userID/public", publicProjects);
 
-router.get("/projects/:userID/public", publicProjects);
+router.get("/projects/:authorization/private", privateProjects);
 
-router.post("/projects/private", publicProjects);
+router.delete("/project/delete", deleteProject);
 
 router.get("*", (req: Request, res: Response) => {
   res.status(404).send({ message: "This route does not exist!" });
