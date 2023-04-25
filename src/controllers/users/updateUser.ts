@@ -4,14 +4,26 @@ import jwt from "jsonwebtoken";
 
 import { User } from "../../models/User";
 
-interface JWTPayLoad {
-  id: number;
+import { JWTPayLoad } from "../../types/JWTPayLoad";
+
+interface IUpdateUser {
+  email: string;
+  name: string;
+  currentPassword: string;
+  newPassword: string;
+  imagePath: string;
 }
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const { authorization } = req.headers;
-    const { email, name, currentPassword, newPassword, imagePath } = req.body;
+    const {
+      email,
+      name,
+      currentPassword,
+      newPassword,
+      imagePath,
+    }: IUpdateUser = req.body;
 
     if (!authorization) {
       return res.status(401).json({ message: "not authorized" });

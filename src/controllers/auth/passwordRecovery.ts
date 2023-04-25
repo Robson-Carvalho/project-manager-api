@@ -5,9 +5,13 @@ import { passwordRecoveryPage } from "../../utils/passwordRecoveryPage";
 
 import { User } from "../../models/User";
 
+interface IPasswordRecovery {
+  email: string;
+}
+
 export const passwordRecovery = async (req: Request, res: Response) => {
   try {
-    const { email } = req.body;
+    const { email }: IPasswordRecovery = req.body;
 
     if (!email) {
       return res.status(400).json({

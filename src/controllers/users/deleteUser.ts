@@ -2,9 +2,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../../models/User";
 
-interface JWTPayLoad {
-  id: number;
-}
+import { JWTPayLoad } from "../../types/JWTPayLoad";
 
 export const deleteUser = async (req: Request, res: Response) => {
   try {

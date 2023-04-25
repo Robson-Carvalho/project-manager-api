@@ -1,17 +1,20 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { IncomingHttpHeaders } from "http";
 
 import { User } from "../../models/User";
 
-interface JWTPayLoad {
-  email: string;
+import { JWTPayLoad } from "../../types/JWTPayLoad";
+
+interface INewPassword {
+  newPassword: string;
 }
 
 export const recoveringPassword = async (req: Request, res: Response) => {
   try {
-    const { authorization } = req.headers;
-    const { newPassword } = req.body;
+    const { authorization }: IncomingHttpHeaders = req.headers;
+    const { newPassword }: INewPassword = req.body;
 
     if (!authorization) {
       return res.status(401).json({ message: "Not authorized" });
