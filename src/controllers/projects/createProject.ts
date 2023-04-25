@@ -1,12 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-
 import { User } from "../../models/User";
 import { Project } from "../../models/Project";
-
-interface JWTPayLoad {
-  id: number;
-}
 
 interface IProject {
   title: string;
@@ -16,6 +11,8 @@ interface IProject {
   url_image: string;
   url_github: string;
 }
+
+import { JWTPayLoad } from "../../types/JWTPayLoad";
 
 export const createProject = async (req: Request, res: Response) => {
   try {
@@ -40,18 +37,16 @@ export const createProject = async (req: Request, res: Response) => {
     }
 
     if (!technologies) {
-      res.status(400).json({
+      return res.status(400).json({
         message: "At least one technology is required",
       });
-      return;
     }
 
     const token = authorization.split(" ")[1];
-
     const secretKey = process.env.JWT_SECRET_KEY;
     const { id } = jwt.verify(token, secretKey!) as JWTPayLoad;
 
-    const user = User.findOne({ _id: id });
+    const user = User.findById({ _id: id });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });

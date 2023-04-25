@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-
-import { User } from "../../models/User";
 import { IncomingHttpHeaders } from "http";
 
-interface JWTPayLoad {
-  email: string;
-}
+import { User } from "../../models/User";
+
+import { JWTPayLoad } from "../../types/JWTPayLoad";
 
 interface INewPassword {
   newPassword: string;

@@ -4,9 +4,7 @@ import jwt from "jsonwebtoken";
 
 import { User } from "../../models/User";
 
-interface JWTPayLoad {
-  id: number;
-}
+import { JWTPayLoad } from "../../types/JWTPayLoad";
 
 interface IUpdateUser {
   email: string;
