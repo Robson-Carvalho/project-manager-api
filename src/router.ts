@@ -11,11 +11,12 @@ import { createProject } from "./controllers/projects/createProject";
 import { publicProjects } from "./controllers/projects/publicProjects";
 import { deleteProject } from "./controllers/projects/deleteProject";
 import { privateProjects } from "./controllers/projects/privateProjects";
+import { updateProject } from "./controllers/projects/updateProject";
 
 export const router = Router();
 
 router.get("/", (req: Request, res: Response) => {
-  res.status(200).json({ message: "Welcome to Project Manager API" });
+  res.status(200).json({ message: "welcome to Project Manager API" });
 });
 
 router.post("/login", login);
@@ -24,11 +25,11 @@ router.post("/password/recovery", passwordRecovery);
 
 router.patch("/recovering/password", recoveringPassword);
 
-router.post("/create/user", createUser);
+router.post("/user/create", createUser);
 
-router.put("/update/user", updateUser);
+router.put("/user/update", updateUser);
 
-router.delete("/delete/user", deleteUser);
+router.delete("/user/delete", deleteUser);
 
 router.post("/create/project", createProject);
 
@@ -38,6 +39,8 @@ router.get("/projects/:authorization/private", privateProjects);
 
 router.delete("/project/delete", deleteProject);
 
+router.put("project/update", updateProject);
+
 router.get("*", (req: Request, res: Response) => {
-  res.status(404).send({ message: "This route does not exist!" });
+  res.status(404).send({ message: "this route does not exist!" });
 });

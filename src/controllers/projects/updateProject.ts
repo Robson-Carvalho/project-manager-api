@@ -17,7 +17,7 @@ interface IUpdateProject {
   url_github: String;
 }
 
-export const updateUser = async (req: Request, res: Response) => {
+export const updateProject = async (req: Request, res: Response) => {
   try {
     const { authorization }: IncomingHttpHeaders = req.headers;
     const {
