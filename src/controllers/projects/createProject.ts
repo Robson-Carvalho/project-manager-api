@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../../models/User";
 import { Project } from "../../models/Project";
+import { IncomingHttpHeaders } from "http";
 
 interface IProject {
   title: string;
@@ -16,7 +17,7 @@ import { JWTPayLoad } from "../../types/JWTPayLoad";
 
 export const createProject = async (req: Request, res: Response) => {
   try {
-    const { authorization } = req.headers;
+    const { authorization }: IncomingHttpHeaders = req.headers;
     const {
       title,
       description,
